@@ -245,41 +245,6 @@
   /* ANIMATIONS */
   .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-  /* Hero quote box */
-  .hero-quote-box {
-    display: inline-block;
-    border: 1px solid var(--gold);
-    background: rgba(184,151,58,0.07);
-    padding: 1.5rem 1.75rem;
-    position: relative;
-    max-width: 420px;
-  }
-  .hero-quote-mark {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 4rem; line-height: 0.6;
-    color: var(--gold); opacity: 0.6;
-    margin-bottom: 0.75rem;
-  }
-  .hero-quote-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem; font-weight: 400; font-style: italic;
-    color: var(--cream); line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-  .hero-quote-line {
-    width: 40px; height: 1px;
-    background: var(--gold); margin-bottom: 0.75rem;
-  }
-  .hero-quote-author {
-    font-size: 0.62rem; font-weight: 400;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold-lt);
-  }
-  @media (max-width: 767px) {
-    .hero-quote-box { max-width: 100%; text-align: left; }
-    .hero-quote-text { font-size: 1.1rem; }
-  }
 </style>
 </head>
 <body>
@@ -298,12 +263,10 @@
     <div class="hero-tag">Sales Strategy &amp; Consulting</div>
     <h1 class="hero-name">Stefano<br><em>Joppolo</em></h1>
     <p class="hero-desc">Consulente specializzato in reti di vendita, strategie commerciali e sviluppo delle performance. Docente e formatore con oltre 15 anni di esperienza.</p>
-    <div class="hero-quote-box">
-      <div class="hero-quote-mark">&ldquo;</div>
-      <p class="hero-quote-text">La rete di vendita non è un costo.<br>È il moltiplicatore del valore aziendale.</p>
-      <div class="hero-quote-line"></div>
-      <span class="hero-quote-author">Stefano Joppolo &nbsp;·&nbsp; Sales Strategy</span>
-    </div>
+    <span class="hero-cta">
+      Scopri i servizi
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </span>
   </div>
   <!-- Desktop photo -->
   <div class="hero-right-desktop" style="display:none">
