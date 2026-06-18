@@ -25,95 +25,26 @@
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; width: 100%; }
 
   /* ══════════════════════════════════════
-     NAV — hamburger mobile / full desktop
+     NAV — solo brand
   ══════════════════════════════════════ */
   nav {
     position: sticky; top: 0; z-index: 200;
     height: var(--nav-h);
     background: rgba(13,27,42,0.98);
     border-bottom: 1px solid rgba(184,151,58,0.2);
-    display: flex; align-items: center;
-    padding: 0 1.25rem;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 1.5rem;
   }
-
-  /* Hamburger button */
-  .hamburger {
-    display: flex; flex-direction: column; justify-content: center; gap: 5px;
-    width: 36px; height: 36px; cursor: pointer;
-    background: none; border: none; padding: 4px; flex-shrink: 0;
-    z-index: 210;
-  }
-  .hamburger span {
-    display: block; width: 22px; height: 1.5px;
-    background: var(--cream); transition: all 0.3s ease;
-    transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--gold); }
-  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--gold); }
-
-  /* Logo centered on mobile */
   .nav-brand {
-    flex: 1; text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.4rem; font-weight: 400;
     letter-spacing: 0.14em; color: var(--cream);
     text-decoration: none; text-transform: uppercase;
   }
   .nav-brand .j { color: var(--gold); }
-
-  /* Spacer to balance hamburger on right */
-  .nav-spacer { width: 36px; flex-shrink: 0; }
-
-  /* Drawer menu */
-  .nav-drawer {
-    position: fixed;
-    top: var(--nav-h); left: 0;
-    width: 260px; height: calc(100vh - var(--nav-h));
-    background: var(--navy);
-    border-right: 1px solid rgba(184,151,58,0.2);
-    transform: translateX(-100%);
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-    z-index: 199; padding: 2.5rem 2rem;
-    display: flex; flex-direction: column; gap: 0;
-  }
-  .nav-drawer.open { transform: translateX(0); }
-
-  .drawer-item {
-    display: block; padding: 1.1rem 0;
-    border-bottom: 1px solid rgba(184,151,58,0.12);
-    font-size: 0.72rem; font-weight: 400;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--stone); text-decoration: none;
-    transition: color 0.2s; cursor: pointer;
-  }
-  .drawer-item:hover { color: var(--gold); }
-  .drawer-item:first-child { border-top: 1px solid rgba(184,151,58,0.12); }
-
-  .drawer-overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.45); z-index: 198;
-  }
-  .drawer-overlay.open { display: block; }
-
-  /* Desktop nav — hide hamburger, show inline links */
   @media (min-width: 768px) {
-    :root { --nav-h: 72px; }
-    nav { padding: 0 4rem; }
-    .hamburger { display: none; }
-    .nav-spacer { display: none; }
-    .nav-brand { flex: 0; text-align: left; font-size: 1.5rem; margin-right: auto; }
-    .nav-drawer {
-      position: static; width: auto; height: auto;
-      background: none; border: none; padding: 0;
-      transform: none; flex-direction: row; gap: 2.5rem;
-      align-items: center;
-    }
-    .drawer-item {
-      border: none; padding: 0; font-size: 0.7rem; color: var(--stone);
-    }
-    .drawer-item:first-child { border: none; }
-    .drawer-overlay { display: none !important; }
+    nav { padding: 0 4rem; justify-content: flex-start; }
+    .nav-brand { font-size: 1.5rem; }
   }
 
   /* ══════════════════════════════════════
@@ -314,26 +245,49 @@
   /* ANIMATIONS */
   .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* Hero quote box */
+  .hero-quote-box {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    background: rgba(184,151,58,0.07);
+    padding: 1.5rem 1.75rem;
+    position: relative;
+    max-width: 420px;
+  }
+  .hero-quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; line-height: 0.6;
+    color: var(--gold); opacity: 0.6;
+    margin-bottom: 0.75rem;
+  }
+  .hero-quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 400; font-style: italic;
+    color: var(--cream); line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .hero-quote-line {
+    width: 40px; height: 1px;
+    background: var(--gold); margin-bottom: 0.75rem;
+  }
+  .hero-quote-author {
+    font-size: 0.62rem; font-weight: 400;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-lt);
+  }
+  @media (max-width: 767px) {
+    .hero-quote-box { max-width: 100%; text-align: left; }
+    .hero-quote-text { font-size: 1.1rem; }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <a href="#hero" class="nav-brand"><span class="j">J</span>oppolo</a>
-  <div class="nav-spacer"></div>
-
-  <!-- Drawer -->
-  <div class="nav-drawer" id="drawer">
-    <a class="drawer-item" data-target="chi-sono">Chi sono</a>
-    <a class="drawer-item" data-target="servizi">Servizi</a>
-    <a class="drawer-item" data-target="contatti">Contatti</a>
-  </div>
+  <a class="nav-brand" href="#"><span class="j">J</span>oppolo</a>
 </nav>
-<div class="drawer-overlay" id="overlay"></div>
 
 <!-- HERO -->
 <section id="hero">
@@ -344,10 +298,12 @@
     <div class="hero-tag">Sales Strategy &amp; Consulting</div>
     <h1 class="hero-name">Stefano<br><em>Joppolo</em></h1>
     <p class="hero-desc">Consulente specializzato in reti di vendita, strategie commerciali e sviluppo delle performance. Docente e formatore con oltre 15 anni di esperienza.</p>
-    <a class="hero-cta" data-target="servizi">
-      Scopri i servizi
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+    <div class="hero-quote-box">
+      <div class="hero-quote-mark">&ldquo;</div>
+      <p class="hero-quote-text">La rete di vendita non è un costo.<br>È il moltiplicatore del valore aziendale.</p>
+      <div class="hero-quote-line"></div>
+      <span class="hero-quote-author">Stefano Joppolo &nbsp;·&nbsp; Sales Strategy</span>
+    </div>
   </div>
   <!-- Desktop photo -->
   <div class="hero-right-desktop" style="display:none">
@@ -439,69 +395,24 @@
   <div class="footer-copy">© 2025 Joppolo. Tutti i diritti riservati.</div>
 </footer>
 
+
 <script>
-  // ── Hamburger ──
-  const hamburger = document.getElementById('hamburger');
-  const drawer    = document.getElementById('drawer');
-  const overlay   = document.getElementById('overlay');
+  // Fade-in on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-  function openMenu() {
-    hamburger.classList.add('open');
-    drawer.classList.add('open');
-    overlay.classList.add('open');
-  }
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    drawer.classList.remove('open');
-    overlay.classList.remove('open');
-  }
-  hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeMenu() : openMenu());
-  overlay.addEventListener('click', closeMenu);
-
-  // Scroll — works inside Google Sites iframe
-  function goTo(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // Drawer links
-  document.querySelectorAll('.drawer-item[data-target]').forEach(a => {
-    a.addEventListener('click', () => {
-      closeMenu();
-      setTimeout(() => goTo(a.dataset.target), 300);
-    });
-  });
-
-  // CTA and other data-target elements
-  document.querySelectorAll('[data-target]').forEach(el => {
-    if (!el.classList.contains('drawer-item')) {
-      el.style.cursor = 'pointer';
-      el.addEventListener('click', () => goTo(el.dataset.target));
-    }
-  });
-
-  // Nav brand
-  document.querySelector('.nav-brand').addEventListener('click', e => {
-    e.preventDefault();
-    goTo('hero');
-  });
-
-  // ── Desktop photo toggle ──
+  // Desktop photo toggle
   function checkLayout() {
     const isDesktop = window.innerWidth >= 768;
     const r = document.querySelector('.hero-right-desktop');
     const m = document.querySelector('.hero-photo');
     if (r) r.style.display = isDesktop ? 'flex' : 'none';
-    if (m) m.style.display = isDesktop ? 'none' : 'block';
+    if (m) m.style.display = isDesktop ? 'block' : 'block';
   }
   checkLayout();
   window.addEventListener('resize', checkLayout);
-
-  // ── Scroll animations ──
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
