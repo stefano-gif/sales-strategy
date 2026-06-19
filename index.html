@@ -22,221 +22,626 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    overflow-x: hidden;
-    width: 100%;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; width: 100%; }
 
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 200;
+    position: sticky; top: 0; z-index: 200;
     height: var(--nav-h);
     background: rgba(13,27,42,0.98);
     border-bottom: 1px solid rgba(184,151,58,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     padding: 0 1.5rem;
   }
-
   .nav-brand {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    color: var(--cream);
-    text-decoration: none;
-    text-transform: uppercase;
+    font-size: 1.4rem; font-weight: 400;
+    letter-spacing: 0.14em; color: var(--cream);
+    text-decoration: none; text-transform: uppercase;
   }
-
   .nav-brand .j { color: var(--gold); }
-
   @media (min-width: 768px) {
-    nav {
-      padding: 0 4rem;
-      justify-content: flex-start;
-    }
+    nav { padding: 0 4rem; justify-content: flex-start; }
     .nav-brand { font-size: 1.5rem; }
   }
 
-  /* HERO */
   #hero {
-    background: var(--navy);
-    position: relative;
-    overflow: hidden;
+    background: var(--navy); position: relative; overflow: hidden;
     padding: 3.5rem 1.5rem 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex; flex-direction: column; align-items: center;
   }
-
   #hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(184,151,58,0.06) 0%, transparent 60%);
     pointer-events: none;
   }
-
   .hero-big-j {
-    position: absolute;
-    right: -2vw;
-    bottom: -8%;
+    position: absolute; right: -2vw; bottom: -8%;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 55vw;
-    font-weight: 300;
-    color: rgba(184,151,58,0.04);
-    line-height: 1;
-    user-select: none;
-    pointer-events: none;
+    font-size: 55vw; font-weight: 300;
+    color: rgba(184,151,58,0.04); line-height: 1;
+    user-select: none; pointer-events: none;
   }
 
   .hero-photo {
-    width: 200px;
-    height: 267px;
-    position: relative;
-    z-index: 2;
-    margin-bottom: 2.5rem;
-    flex-shrink: 0;
+    width: 200px; height: 267px;
+    position: relative; z-index: 2; margin-bottom: 2.5rem; flex-shrink: 0;
   }
-
   .hero-photo::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: 10px;
-    bottom: 10px;
-    border: 1px solid rgba(184,151,58,0.5);
-    z-index: 0;
+    content: ''; position: absolute;
+    top: -10px; left: -10px; right: 10px; bottom: 10px;
+    border: 1px solid rgba(184,151,58,0.5); z-index: 0;
   }
-
   .hero-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    position: relative;
-    z-index: 1;
-    filter: grayscale(15%);
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    display: block; position: relative; z-index: 1; filter: grayscale(15%);
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    width: 100%;
-  }
-
+  .hero-content { position: relative; z-index: 2; text-align: center; width: 100%; }
   .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
   }
-
-  .hero-tag::before {
-    content: '';
-    width: 22px;
-    height: 1px;
-    background: var(--gold);
-  }
-
+  .hero-tag::before { content: ''; width: 22px; height: 1px; background: var(--gold); }
   .hero-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.6rem, 11vw, 4.5rem);
-    font-weight: 300;
-    color: var(--cream);
-    line-height: 1.05;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-bottom: 1.1rem;
+    font-size: clamp(2.6rem, 11vw, 4.5rem); font-weight: 300;
+    color: var(--cream); line-height: 1.05;
+    letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1.1rem;
   }
-
-  .hero-name em {
-    font-style: italic;
-    color: var(--gold);
-    display: block;
-    font-size: 0.85em;
-  }
-
+  .hero-name em { font-style: italic; color: var(--gold); display: block; font-size: 0.85em; }
   .hero-desc {
-    font-size: 0.9rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--stone);
-    margin-bottom: 2rem;
-    max-width: 340px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 0.9rem; font-weight: 300; line-height: 1.8;
+    color: var(--stone); margin-bottom: 2rem;
+    max-width: 340px; margin-left: auto; margin-right: auto;
   }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 0.85rem 1.75rem;
+    border: 1px solid var(--gold); color: var(--gold);
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .hero-cta:hover { background: var(--gold); color: var(--navy); }
 
   @media (min-width: 768px) {
     #hero {
-      flex-direction: row;
-      align-items: center;
-      padding: 0;
-      min-height: 100vh;
+      flex-direction: row; align-items: center;
+      padding: 0; min-height: 100vh;
     }
-
     .hero-photo { display: none; }
-
     .hero-content {
-      text-align: left;
-      padding: 10rem 4rem 8rem 8rem;
-      flex: 1;
+      text-align: left; padding: 10rem 4rem 8rem 8rem; flex: 1;
     }
-
-    .hero-desc {
-      margin-left: 0;
-      margin-right: 0;
-    }
-
+    .hero-desc { margin-left: 0; margin-right: 0; }
     .hero-right-desktop {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8rem 8rem 8rem 2rem;
-      position: relative;
-      z-index: 2;
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 8rem 8rem 8rem 2rem; position: relative; z-index: 2;
     }
-
     .profile-frame-desktop {
-      position: relative;
-      width: min(320px, 28vw);
-      aspect-ratio: 3/4;
+      position: relative; width: min(320px, 28vw); aspect-ratio: 3/4;
     }
-
     .profile-frame-desktop::before {
-      content: '';
-      position: absolute;
-      top: -16px;
-      left: -16px;
-      width: 100%;
-      height: 100%;
-      border: 1px solid rgba(184,151,58,0.5);
-      z-index: 0;
+      content: ''; position: absolute; top: -16px; left: -16px;
+      width: 100%; height: 100%;
+      border: 1px solid rgba(184,151,58,0.5); z-index: 0;
     }
-
     .profile-frame-desktop::after {
-      content: '';
-      position: absolute;
-      bottom: -24px;
-      right: -24px;
-      width: 60%;
-      height: 40%;
-      background: rgba(184,151,58,0.1);
-      z-index: 0;
+      content: ''; position: absolute; bottom: -24px; right: -24px;
+      width: 60%; height: 40%; background: rgba(184,151,58,0.1); z-index: 0;
+    }
+    .profile-frame-desktop img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      display: block; position: relative; z-index: 1; filter: grayscale(15%);
+    }
+  }
+
+  .stats-strip { background: var(--gold); display: grid; grid-template-columns: repeat(3,1fr); }
+  .stat { padding: 1.1rem 0.5rem; border-right: 1px solid rgba(13,27,42,0.15); text-align: center; }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 300; color: var(--navy); line-height: 1; display: block; margin-bottom: 0.2rem; }
+  .stat-label { font-size: 0.5rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(13,27,42,0.65); }
+  @media (min-width: 768px) {
+    .stat { padding: 2rem 3rem; }
+    .stat-num { font-size: 2.8rem; }
+    .stat-label { font-size: 0.65rem; }
+  }
+
+  .sp { padding: 3.5rem 1.5rem; }
+  @media (min-width: 768px) { .sp { padding: 7rem 8rem; } }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 300;
+    color: var(--navy); line-height: 1.1; margin-bottom: 0.75rem;
+  }
+  .section-divider { width: 50px; height: 2px; background: var(--gold); margin: 1.25rem 0 2rem; }
+
+  #chi-sono { background: var(--bg); }
+  .bio-text { font-size: 0.92rem; font-weight: 300; line-height: 1.85; color: #4a4a4a; margin-bottom: 1.25rem; }
+  .bio-highlight {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 400; font-style: italic;
+    color: var(--navy); line-height: 1.5;
+    padding-left: 1.25rem; border-left: 3px solid var(--gold); margin: 2rem 0;
+  }
+  .visual-card { background: var(--navy); padding: 2rem; position: relative; overflow: hidden; margin-top: 2rem; }
+  .visual-card-lbl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+  .expertise-list { list-style: none; }
+  .expertise-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: rgba(248,245,239,0.75); font-size: 0.85rem; font-weight: 300; line-height: 1.5;
+  }
+  .expertise-list li:last-child { border-bottom: none; }
+  .expertise-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); margin-top: 0.45rem; flex-shrink: 0; }
+
+  @media (min-width: 768px) {
+    #chi-sono.sp { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .visual-card { margin-top: 0; }
+  }
+
+  #servizi { background: var(--navy); }
+  #servizi .section-title { color: var(--cream); }
+  .servizi-intro { font-size: 0.92rem; font-weight: 300; line-height: 1.8; color: var(--stone); margin-bottom: 2.5rem; }
+  .servizi-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(184,151,58,0.15); }
+  .servizio-card { background: var(--navy-mid); padding: 1.75rem; }
+  .servizio-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: rgba(184,151,58,0.35); line-height: 1; margin-bottom: 1rem; display: block; }
+  .servizio-line { width: 28px; height: 1px; background: var(--gold); margin-bottom: 1rem; }
+  .servizio-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--cream); margin-bottom: 0.6rem; line-height: 1.2; }
+  .servizio-desc { font-size: 0.83rem; font-weight: 300; line-height: 1.7; color: var(--stone); }
+  @media (min-width: 768px) {
+    .servizi-grid { grid-template-columns: repeat(3,1fr); gap: 1.5px; }
+  }
+
+  #contatti { background: var(--bg); }
+  .contact-items { margin-top: 1rem; }
+  .contact-item { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid #e8e4dc; }
+  .contact-item:last-child { border-bottom: none; }
+  .contact-icon { width: 40px; height: 40px; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); margin-bottom: 0.2rem; }
+  .contact-value { font-size: 0.9rem; color: var(--navy); font-weight: 400; text-decoration: none; word-break: break-all; display: block; }
+  .contact-value:hover { color: var(--gold); }
+  @media (min-width: 768px) {
+    #contatti.sp { max-width: 680px; }
+  }
+
+  /* ═══════════════════════════════════
+     FORM RICHIESTA INFORMAZIONI
+  ═══════════════════════════════════ */
+  #richiesta { background: var(--light); }
+  #richiesta .section-title { color: var(--navy); }
+
+  .form-row {
+    display: grid; grid-template-columns: 1fr;
+    gap: 0 1.5rem;
+  }
+  @media (min-width: 600px) {
+    .form-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  .form-group { margin-bottom: 1.5rem; }
+
+  .form-label {
+    display: block;
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--navy); font-weight: 500;
+    margin-bottom: 0.55rem;
+  }
+
+  .form-input {
+    width: 100%; padding: 0.85rem 1rem;
+    background: #fff;
+    border: 1px solid #ddd8cc;
+    border-radius: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 300;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    appearance: none;
+  }
+  .form-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,151,58,0.12);
+  }
+  .form-input::placeholder { color: #b0ab9e; }
+
+  .form-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23B8973A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form-textarea {
+    min-height: 130px; resize: vertical;
+    line-height: 1.7;
+  }
+
+  .form-privacy {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .form-privacy input[type="checkbox"] {
+    width: 16px; height: 16px; flex-shrink: 0;
+    margin-top: 2px; accent-color: var(--gold); cursor: pointer;
+  }
+  .form-privacy label {
+    font-size: 0.78rem; font-weight: 300; color: #6b6658; line-height: 1.6; cursor: pointer;
+  }
+
+  .form-btn {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    background: var(--navy); border: 1px solid var(--navy);
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .form-btn:hover:not(:disabled) { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  .form-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .form-btn .btn-spinner {
+    width: 14px; height: 14px;
+    border: 2px solid currentColor; border-top-color: transparent;
+    border-radius: 50%; display: none;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .form-feedback {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 1.25rem; margin-top: 1.25rem;
+    font-size: 0.85rem; font-weight: 300; line-height: 1.5;
+    border-radius: 0;
+  }
+  .form-success { background: rgba(34,139,34,0.08); border-left: 3px solid #228B22; color: #1a5c1a; }
+  .form-error   { background: rgba(180,30,30,0.08); border-left: 3px solid #B41E1E; color: #7a1212; }
+
+  .form-input.input-error { border-color: #B41E1E; }
+
+  footer { background: var(--navy); border-top: 3px solid var(--gold); padding: 2rem 1.5rem; text-align: center; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream); display: block; margin-bottom: 0.6rem; }
+  .footer-brand .j { color: var(--gold); }
+  .footer-info { font-size: 0.72rem; color: var(--stone); line-height: 1.7; margin-bottom: 0.5rem; }
+  .footer-copy { font-size: 0.65rem; color: rgba(156,163,175,0.5); }
+  @media (min-width: 768px) {
+    footer { padding: 3rem 8rem; display: flex; align-items: center; justify-content: space-between; text-align: left; }
+    .footer-brand { display: inline; margin-bottom: 0; }
+    .footer-info { text-align: center; margin-bottom: 0; }
+  }
+
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  .hero-quote-box {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    background: rgba(184,151,58,0.07);
+    padding: 1.5rem 1.75rem;
+    position: relative;
+    max-width: 420px;
+  }
+  .hero-quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 4rem; line-height: 0.6; color: var(--gold); opacity: 0.6; margin-bottom: 0.75rem; }
+  .hero-quote-text { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; font-style: italic; color: var(--cream); line-height: 1.6; margin-bottom: 1rem; }
+  .hero-quote-line { width: 40px; height: 1px; background: var(--gold); margin-bottom: 0.75rem; }
+  .hero-quote-author { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-lt); }
+  @media (max-width: 767px) {
+    .hero-quote-box { max-width: 100%; text-align: left; }
+    .hero-quote-text { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#"><span class="j">J</span>oppolo</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-photo">
+    <img src="foto.jpg" alt="Stefano Joppolo">
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">Sales Strategy &amp; Consulting</div>
+    <h1 class="hero-name">Stefano<br><em>Joppolo</em></h1>
+    <p class="hero-desc">Consulente specializzato in reti di vendita, strategie commerciali e sviluppo delle performance. Docente e formatore con oltre 15 anni di esperienza.</p>
+    <div class="hero-quote-box">
+      <div class="hero-quote-mark">&ldquo;</div>
+      <p class="hero-quote-text">La rete di vendita non è un costo.<br>È il moltiplicatore del valore aziendale.</p>
+      <div class="hero-quote-line"></div>
+      <span class="hero-quote-author">Stefano Joppolo &nbsp;·&nbsp; Sales Strategy</span>
+    </div>
+  </div>
+  <div class="hero-right-desktop" style="display:none">
+    <div class="profile-frame-desktop">
+      <img src="foto.jpg" alt="Stefano Joppolo">
+    </div>
+  </div>
+  <div class="hero-big-j" aria-hidden="true">J</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Anni esperienza</span></div>
+  <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Formati</span></div>
+  <div class="stat"><span class="stat-num">B2B</span><span class="stat-label">Utility &amp; Corp.</span></div>
+</div>
+
+<!-- CHI SONO -->
+<section id="chi-sono" class="sp">
+  <div class="fade-up">
+    <div class="section-tag">Chi sono</div>
+    <h2 class="section-title">Competenza<br>al servizio<br>della vendita</h2>
+    <div class="section-divider"></div>
+    <p class="bio-text">Mi chiamo Stefano Joppolo e da oltre 15 anni lavoro nel mondo delle reti commerciali, affiancando aziende e professionisti nel potenziare le proprie strategie di vendita.</p>
+    <blockquote class="bio-highlight">"Vendere non è convincere — è costruire la relazione giusta con la persona giusta, nel momento giusto."</blockquote>
+    <p class="bio-text">La mia esperienza spazia dalla strutturazione di reti di vendita alla formazione di team commerciali, con un approccio concreto e orientato ai risultati misurabili.</p>
+  </div>
+  <div class="fade-up">
+    <div class="visual-card">
+      <p class="visual-card-lbl">Aree di expertise</p>
+      <ul class="expertise-list">
+        <li>Progettazione e sviluppo di reti di vendita</li>
+        <li>Formazione e coaching per team commerciali</li>
+        <li>Strategie di go-to-market e sviluppo clienti</li>
+        <li>Sales management e performance KPI</li>
+        <li>Docenza in masterclass e workshop aziendali</li>
+        <li>Consulenza per settore Utility e B2B</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section id="servizi" class="sp">
+  <div class="fade-up">
+    <div class="section-tag">Servizi</div>
+    <h2 class="section-title">Cosa posso<br>fare per te</h2>
+    <div class="section-divider"></div>
+    <p class="servizi-intro">Ogni intervento è pensato su misura. Che si tratti di costruire una rete commerciale da zero o di ottimizzarne una esistente, il punto di partenza è sempre l'analisi della tua realtà specifica.</p>
+  </div>
+  <div class="servizi-grid">
+    <div class="servizio-card fade-up"><span class="servizio-num">01</span><div class="servizio-line"></div><h3 class="servizio-title">Consulenza Reti di Vendita</h3><p class="servizio-desc">Analisi, progettazione e ottimizzazione della struttura commerciale. Definizione dei ruoli, dei processi e degli strumenti per massimizzare le performance.</p></div>
+    <div class="servizio-card fade-up"><span class="servizio-num">02</span><div class="servizio-line"></div><h3 class="servizio-title">Formazione &amp; Coaching</h3><p class="servizio-desc">Percorsi formativi personalizzati per venditori, team leader e direttori commerciali. Tecniche di vendita, gestione delle obiezioni e negoziazione avanzata.</p></div>
+    <div class="servizio-card fade-up"><span class="servizio-num">03</span><div class="servizio-line"></div><h3 class="servizio-title">Docenza &amp; Masterclass</h3><p class="servizio-desc">Lezioni, workshop e masterclass su strategie commerciali, sviluppo delle reti di vendita e management nei settori B2B e Utility.</p></div>
+    <div class="servizio-card fade-up"><span class="servizio-num">04</span><div class="servizio-line"></div><h3 class="servizio-title">Sales Strategy</h3><p class="servizio-desc">Definizione della strategia commerciale, segmentazione del mercato, sviluppo del piano di acquisizione clienti e supporto all'implementazione.</p></div>
+    <div class="servizio-card fade-up"><span class="servizio-num">05</span><div class="servizio-line"></div><h3 class="servizio-title">Assessment Commerciale</h3><p class="servizio-desc">Valutazione delle competenze del team di vendita, analisi dei gap formativi e definizione di un piano di sviluppo individuale e collettivo.</p></div>
+    <div class="servizio-card fade-up"><span class="servizio-num">06</span><div class="servizio-line"></div><h3 class="servizio-title">Interim Sales Management</h3><p class="servizio-desc">Supporto diretto come responsabile commerciale temporaneo durante fasi di transizione, lancio di nuovi mercati o ristrutturazione della rete.</p></div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti" class="sp">
+  <div class="fade-up">
+    <div class="section-tag">Contatti</div>
+    <h2 class="section-title">Parliamo<br>del tuo<br>progetto</h2>
+    <div class="section-divider"></div>
+    <p style="font-size:0.92rem;font-weight:300;line-height:1.8;color:#4a4a4a;margin-bottom:2rem;">Hai un progetto in mente? Scrivimi — rispondo entro 24 ore.</p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8973A" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+        <div><div class="contact-label">Email</div><a href="mailto:stefano@joppolo.com" class="contact-value">stefano@joppolo.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8973A" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div><div class="contact-label">LinkedIn</div><a href="https://www.linkedin.com/in/stefano-ioppolo-3172922" target="_blank" rel="noopener noreferrer" class="contact-value">stefano-ioppolo-3172922</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8973A" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="contact-label">Sede</div><span class="contact-value">Bologna, Italia</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MODULO RICHIESTA INFORMAZIONI
+════════════════════════════════════════ -->
+<section id="richiesta" class="sp">
+  <div class="fade-up" style="max-width:680px;">
+    <div class="section-tag">Richiesta informazioni</div>
+    <h2 class="section-title">Scrivimi<br>direttamente</h2>
+    <div class="section-divider"></div>
+    <p style="font-size:0.92rem;font-weight:300;line-height:1.8;color:#4a4a4a;margin-bottom:2.5rem;">
+      Compila il modulo e ti risponderò entro 24 ore.<br>
+      I campi contrassegnati con <strong style="color:var(--gold);">*</strong> sono obbligatori.
+    </p>
+
+    <!-- ⚠️  IMPORTANTE: sostituisci YOUR_FORM_ID con il tuo ID da formspree.io/forms -->
+    <form id="contact-form" action="https://formspree.io/f/xaqzrwow" method="POST" novalidate>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="nome">Nome *</label>
+          <input class="form-input" type="text" id="nome" name="nome" placeholder="Il tuo nome" required autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cognome">Cognome *</label>
+          <input class="form-input" type="text" id="cognome" name="cognome" placeholder="Il tuo cognome" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email *</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="la-tua@email.it" required autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="azienda">Azienda</label>
+        <input class="form-input" type="text" id="azienda" name="azienda" placeholder="Nome azienda (opzionale)" autocomplete="organization">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="servizio">Area di interesse *</label>
+        <select class="form-input form-select" id="servizio" name="servizio" required>
+          <option value="" disabled selected>Seleziona un servizio</option>
+          <option value="Consulenza Reti di Vendita">Consulenza Reti di Vendita</option>
+          <option value="Formazione e Coaching">Formazione &amp; Coaching</option>
+          <option value="Docenza e Masterclass">Docenza &amp; Masterclass</option>
+          <option value="Sales Strategy">Sales Strategy</option>
+          <option value="Assessment Commerciale">Assessment Commerciale</option>
+          <option value="Interim Sales Management">Interim Sales Management</option>
+          <option value="Altro">Altro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="messaggio">Messaggio *</label>
+        <textarea class="form-input form-textarea" id="messaggio" name="messaggio"
+          placeholder="Descrivi brevemente il tuo progetto o la tua esigenza..." required></textarea>
+      </div>
+
+      <div class="form-privacy">
+        <input type="checkbox" id="privacy" name="privacy_accepted" required>
+        <label for="privacy">
+          Ho letto e accetto la <a href="#" style="color:var(--gold);">privacy policy</a>.
+          I dati saranno trattati esclusivamente per rispondere alla tua richiesta. *
+        </label>
+      </div>
+
+      <!-- honeypot anti-spam (nascosto agli utenti reali) -->
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <!-- reindirizza alla stessa pagina dopo l'invio -->
+      <input type="hidden" name="_next" value="">
+
+      <button type="submit" class="form-btn" id="submit-btn">
+        <span class="btn-text">Invia richiesta</span>
+        <span class="btn-spinner"></span>
+        <svg id="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+        </svg>
+      </button>
+
+      <div id="form-success" class="form-feedback form-success" style="display:none;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        Messaggio inviato con successo! Ti risponderò entro 24 ore.
+      </div>
+      <div id="form-error" class="form-feedback form-error" style="display:none;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Si è verificato un errore. Riprova o scrivimi a <a href="mailto:stefano@joppolo.com" style="color:inherit;text-decoration:underline;">stefano@joppolo.com</a>.
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand"><span class="j">J</span>oppolo</span>
+  <div class="footer-info">Sales Strategy &amp; Consulting &nbsp;·&nbsp; Bologna, Italia</div>
+  <div class="footer-copy">© 2025 Joppolo. Tutti i diritti riservati.</div>
+</footer>
+
+<script>
+  /* ─── Fade-in on scroll ─── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  /* ─── Desktop photo toggle ─── */
+  function checkLayout() {
+    const isDesktop = window.innerWidth >= 768;
+    const r = document.querySelector('.hero-right-desktop');
+    if (r) r.style.display = isDesktop ? 'flex' : 'none';
+  }
+  checkLayout();
+  window.addEventListener('resize', checkLayout);
+
+  /* ─── Contact form (Formspree AJAX) ─── */
+  const form      = document.getElementById('contact-form');
+  const btn       = document.getElementById('submit-btn');
+  const spinner   = btn.querySelector('.btn-spinner');
+  const btnIcon   = document.getElementById('btn-icon');
+  const btnText   = btn.querySelector('.btn-text');
+  const msgOk     = document.getElementById('form-success');
+  const msgErr    = document.getElementById('form-error');
+
+  /* Client-side validation helper */
+  function validateForm() {
+    let valid = true;
+    const required = form.querySelectorAll('[required]');
+    required.forEach(el => {
+      el.classList.remove('input-error');
+      if (el.type === 'checkbox' && !el.checked) { valid = false; }
+      else if (el.type !== 'checkbox' && !el.value.trim()) {
+        el.classList.add('input-error'); valid = false;
+      }
+    });
+    const emailEl = form.querySelector('#email');
+    if (emailEl && emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      emailEl.classList.add('input-error'); valid = false;
+    }
+    return valid;
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    msgOk.style.display = 'none';
+    msgErr.style.display = 'none';
+
+    if (!validateForm()) {
+      msgErr.style.display = 'flex';
+      msgErr.querySelector('span, svg').nextSibling.textContent =
+        ' Compila tutti i campi obbligatori correttamente.';
+      return;
     }
 
+    /* UI: loading state */
+    btn.disabled = true;
+    spinner.style.display = 'inline-block';
+    btnIcon.style.display  = 'none';
+    btnText.textContent    = 'Invio in corso…';
+
+    try {
+      const data     = new FormData(form);
+      const response = await fetch(form.action, {
+        method:  'POST',
+        body:    data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        msgOk.style.display = 'flex';
+        form.reset();
+        msgOk.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        const json = await response.json().catch(() => ({}));
+        throw new Error(json.error || 'Server error');
+      }
+    } catch (err) {
+      msgErr.style.display = 'flex';
+    } finally {
+      btn.disabled           = false;
+      spinner.style.display  = 'none';
+      btnIcon.style.display  = 'inline';
+      btnText.textContent    = 'Invia richiesta';
+    }
+  });
+
+  /* Remove error highlight on input */
+  form.querySelectorAll('.form-input').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('input-error'));
+  });
+</script>
+</body>
+</html>
 
