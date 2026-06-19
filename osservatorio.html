@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Osservatorio Vendita — Joppolo</title>
+  <meta name="description" content="Analisi, dati e riflessioni sul mercato commerciale italiano. Tendenze nelle reti di vendita, utility, liberalizzazioni e professione commerciale.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0D1B2A;
+      --navy-mid: #142234;
+      --gold: #B8973A;
+      --gold-lt: #D4B060;
+      --cream: #F8F5EF;
+      --stone: #9CA3AF;
+      --ink: #2C2C2C;
+      --bg: #FAFAF8;
+      --light: #F3F1EC;
+      --nav-h: 60px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV (identico al sito principale) ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: var(--nav-h);
+      background: rgba(13, 27, 42, 0.98);
+      border-bottom: 1px solid rgba(184, 151, 58, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      color: var(--cream);
+      text-decoration: none;
+      text-transform: uppercase;
+      z-index: 260;
+    }
+    .nav-brand .j { color: var(--gold); }
+    .nav-toggle {
+      width: 34px; height: 34px;
+      background: transparent; border: none;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      gap: 5px; cursor: pointer; padding: 0; z-index: 260;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--gold);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; }
+    .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-menu {
+      position: absolute;
+      top: calc(var(--nav-h) - 1px);
+      right: 1.5rem;
+      min-width: 220px;
+      background: rgba(13, 27, 42, 0.98);
+      border: 1px solid rgba(184, 151, 58, 0.18);
+      padding: 0.5rem 0;
+      display: none; flex-direction: column; z-index: 250;
+    }
+    .nav-menu.open { display: flex; }
+    .nav-menu a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.2rem;
+      white-space: nowrap;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--gold); background: rgba(184, 151, 58, 0.06); }
+    @media (min-width: 768px) {
+      nav { padding: 0 4rem; }
+      .nav-brand { font-size: 1.5rem; }
+      .nav-menu { right: 4rem; }
+    }
+
+    /* ── HERO OSSERVATORIO ── */
+    .obs-hero {
+      background: var(--navy);
+      padding: 4rem 1.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .obs-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(184,151,58,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .obs-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+    .obs-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.1rem;
+    }
+    .obs-eyebrow::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--gold);
+    }
+    .obs-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.25rem;
+    }
+    .obs-hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .obs-hero-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--stone);
+      max-width: 520px;
+    }
+    /* big decorative letter */
+    .obs-big-letter {
+      position: absolute;
+      right: -1vw;
+      bottom: -10%;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40vw;
+      font-weight: 300;
+      color: rgba(184,151,58,0.04);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+    @media (min-width: 768px) {
+      .obs-hero { padding: 5rem 8rem 4.5rem; }
+    }
+
+    /* ── FILTRI CATEGORIA ── */
+    .filters-bar {
+      background: var(--light);
+      border-bottom: 1px solid #e3dfd6;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .filters-bar::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      flex-shrink: 0;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      padding: 1rem 1.1rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .filter-btn:hover { color: var(--navy); }
+    .filter-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+    @media (min-width: 768px) {
+      .filters-bar { padding: 0 8rem; gap: 0.5rem; }
+    }
+
+    /* ── MAIN CONTENT ── */
+    .obs-main {
+      padding: 3rem 1.5rem 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .obs-main { padding: 4rem 2rem 6rem; }
+    }
+
+    /* ── FEATURED (primo insight) ── */
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      background: var(--navy);
+      margin-bottom: 3rem;
+      overflow: hidden;
+    }
+    .featured-visual {
+      background: var(--navy-mid);
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(184,151,58,0.1), transparent 60%);
+    }
+    .featured-stat-block {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .featured-big-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 12vw, 6rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .featured-num-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248,245,239,0.5);
+      margin-top: 0.5rem;
+      display: block;
+    }
+    .featured-body {
+      padding: 2rem 1.75rem 2.25rem;
+    }
+    .card-tag {
+      display: inline-block;
+      font-size: 0.52rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.6rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .featured-body .card-tag { /* on dark bg */
+      color: var(--gold);
+      border-color: rgba(184,151,58,0.5);
+    }
+    .featured-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 2.1rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 0.85rem;
+    }
+    .featured-excerpt {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--stone);
+      margin-bottom: 1.5rem;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(156,163,175,0.6);
+      margin-bottom: 1.25rem;
+    }
+    .card-meta span + span::before {
+      content: '·';
+      margin-right: 1rem;
+    }
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .read-link:hover { gap: 0.8rem; color: var(--gold-lt); }
+    .read-link svg { transition: transform 0.2s; }
+    .read-link:hover svg { transform: translateX(3px); }
+
+    @media (min-width: 768px) {
+      .featured-card { grid-template-columns: 320px 1fr; }
+      .featured-visual { min-height: auto; }
+      .featured-body { padding: 2.5rem 2.5rem 2.75rem; }
+    }
+
+    /* ── GRIGLIA CARD ── */
+    .cards-heading {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .cards-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e3dfd6;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 600px) {
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1000px) {
+      .cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .insight-card {
+      background: #fff;
+      border: 1px solid #e8e4dc;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .insight-card:hover {
+      box-shadow: 0 8px 32px rgba(13,27,42,0.1);
+      transform: translateY(-3px);
+    }
+    .card-visual {
+      background: var(--light);
+      padding: 2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 130px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* ogni card ha un colore di sfondo leggermente diverso */
+    .card-visual.v-navy {
+      background: var(--navy-mid);
+    }
+    .card-visual.v-gold {
+      background: linear-gradient(135deg, #1a2a1a 0%, #0d1b0d 100%);
+    }
+    .card-visual.v-light {
+      background: var(--light);
+    }
+
+    .card-visual-stat {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .card-visual-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1;
+      display: block;
+    }
+    .v-navy .card-visual-num { color: var(--gold); }
+    .v-gold .card-visual-num { color: #7fc47f; }
+    .v-light .card-visual-num { color: var(--navy); }
+
+    .card-visual-sub {
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 0.4rem;
+    }
+    .v-navy .card-visual-sub { color: rgba(248,245,239,0.45); }
+    .v-gold .card-visual-sub { color: rgba(248,245,239,0.45); }
+    .v-light .card-visual-sub { color: var(--stone); }
+
+    .card-body {
+      padding: 1.4rem 1.4rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-body .card-tag {
+      color: var(--gold);
+      border-color: rgba(184,151,58,0.35);
+      margin-bottom: 0.75rem;
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 0.65rem;
+    }
+    .card-excerpt {
+      font-size: 0.8rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #5a5650;
+      margin-bottom: 1.1rem;
+      flex: 1;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.85rem;
+      border-top: 1px solid #eeebe4;
+    }
+    .card-date {
+      font-size: 0.56rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .card-body .read-link {
+      font-size: 0.58rem;
+    }
+
+    /* ── BANNER CTA ── */
+    .obs-cta {
+      margin-top: 4rem;
+      background: var(--navy);
+      padding: 2.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .obs-cta-text p:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .obs-cta-text p:last-child {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--stone);
+    }
+    .obs-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.2rem;
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+      flex-shrink: 0;
+    }
+    .obs-cta-btn:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+    @media (min-width: 768px) {
+      .obs-cta {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.5rem 3rem;
+      }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 3px solid var(--gold);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .footer-brand .j { color: var(--gold); }
+    .footer-info {
+      font-size: 0.72rem;
+      color: var(--stone);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .footer-copy { font-size: 0.65rem; color: rgba(156,163,175,0.5); }
+    .footer-link { color: var(--gold); text-decoration: none; }
+    .footer-link:hover { color: var(--gold-lt); }
+    @media (min-width: 768px) {
+      footer {
+        padding: 3rem 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+      }
+      .footer-brand { display: inline; margin-bottom: 0; }
+      .footer-info { text-align: center; margin-bottom: 0; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-brand" href="index.html"><span class="j">J</span>oppolo</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="index.html#chi-sono">Chi sono</a>
+      <a href="index.html#servizi">Servizi</a>
+      <a href="osservatorio.html" class="active">Osservatorio</a>
+      <a href="index.html#contatti">Contatti</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="obs-hero">
+    <div class="obs-big-letter" aria-hidden="true">O</div>
+    <div class="obs-hero-inner">
+      <div class="obs-eyebrow">Joppolo · Sales Strategy</div>
+      <h1>Osservatorio<br><em>Vendita</em></h1>
+      <p class="obs-hero-desc">
+        Analisi, dati e riflessioni sul mercato commerciale italiano.
+        Tendenze nelle reti di vendita, evoluzione normativa e professione commerciale — con lo sguardo di chi lavora sul campo.
+      </p>
+    </div>
+  </header>
+
+  <!-- FILTRI -->
+  <div class="filters-bar">
+    <button class="filter-btn active" data-filter="tutti">Tutti</button>
+    <button class="filter-btn" data-filter="mercato">Mercato &amp; Numeri</button>
+    <button class="filter-btn" data-filter="professione">Professione Commerciale</button>
+    <button class="filter-btn" data-filter="strategia">Strategia &amp; Strumenti</button>
+  </div>
+
+  <!-- MAIN -->
+  <main class="obs-main">
+
+    <!-- FEATURED -->
+    <article class="featured-card fade-up" data-category="mercato">
+      <div class="featured-visual">
+        <div class="featured-stat-block">
+          <span class="featured-big-num">700+</span>
+          <span class="featured-num-label">operatori attivi · mercato libero Italia</span>
+        </div>
+      </div>
+      <div class="featured-body">
+        <span class="card-tag">Mercato &amp; Numeri</span>
+        <h2 class="featured-title">Dal 2% al 78%: vent'anni di liberalizzazione e cosa resta da fare</h2>
+        <div class="card-meta">
+          <span>Giugno 2025</span>
+          <span>5 min lettura</span>
+        </div>
+        <p class="featured-excerpt">
+          Dal 2004 al 2026, il mercato retail dell'energia elettrica e del gas in Italia ha attraversato una trasformazione radicale. Oggi il 78% dei clienti domestici luce e l'86% del gas sono nel mercato libero. Ma il vero stress test arriva adesso: lo switch a 24 ore cambierà le regole del gioco per le reti di vendita.
+        </p>
+        <a href="#" class="read-link">
+          Leggi l'analisi
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- GRIGLIA INSIGHT -->
+    <p class="cards-heading">Altri insight</p>
+
+    <div class="cards-grid">
+
+      <!-- Card 2 -->
+      <article class="insight-card fade-up" data-category="professione">
+        <div class="card-visual v-navy">
+          <div class="card-visual-stat">
+            <span class="card-visual-num">#1</span>
+            <span class="card-visual-sub">LinkedIn Jobs Report · 3 anni consecutivi</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Professione Commerciale</span>
+          <h3 class="card-title">Venditori si nasce o si diventa? Il paradosso della professione invisibile</h3>
+          <p class="card-excerpt">
+            LinkedIn analizza milioni di percorsi professionali ogni anno: l'addetto allo sviluppo commerciale è al primo posto da tre anni consecutivi. Il mercato li cerca, la formazione non li produce. Un paradosso tutto italiano.
+          </p>
+          <div class="card-footer">
+            <span class="card-date">Maggio 2025</span>
+            <a href="#" class="read-link">
+              Leggi
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="insight-card fade-up" data-category="strategia">
+        <div class="card-visual v-light">
+          <div class="card-visual-stat">
+            <span class="card-visual-num" style="font-size:2rem; color:var(--navy);">Churn<br>illimitato</span>
+            <span class="card-visual-sub" style="color:var(--stone);">Switch luce 2026 · gas 2027</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Strategia &amp; Strumenti</span>
+          <h3 class="card-title">Switch a 24 ore: come cambierà la vita delle reti commerciali nel settore utility</h3>
+          <p class="card-excerpt">
+            Con il passaggio allo switch luce in 24 ore (2026) e gas (2027), il churn diventa illimitato. Le reti di vendita che sopravviveranno saranno quelle costruite sulla relazione, non sul volume. Cosa fare adesso.
+          </p>
+          <div class="card-footer">
+            <span class="card-date">Aprile 2025</span>
+            <a href="#" class="read-link">
+              Leggi
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="insight-card fade-up" data-category="professione">
+        <div class="card-visual v-gold">
+          <div class="card-visual-stat">
+            <span class="card-visual-num">235</span>
+            <span class="card-visual-sub" style="color:rgba(248,245,239,0.45);">università USA con programmi sales · 0 in Italia</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Professione Commerciale</span>
+          <h3 class="card-title">Negli USA 235 università insegnano a vendere. In Italia nessuna. Il costo del divario</h3>
+          <p class="card-excerpt">
+            Nel 2007 erano 27, oggi sono 235 i college americani con programmi dedicati al professional sales. In Italia la formazione alla vendita è quasi assente nel sistema pubblico. Le aziende pagano il conto con turnover e costi di onboarding fuori controllo.
+          </p>
+          <div class="card-footer">
+            <span class="card-date">Marzo 2025</span>
+            <a href="#" class="read-link">
+              Leggi
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- CTA BANNER -->
+    <div class="obs-cta fade-up">
+      <div class="obs-cta-text">
+        <p>Hai un progetto commerciale da analizzare?</p>
+        <p>Confrontiamoci: porto dati, metodologia e quindici anni di esperienza sul campo.</p>
+      </div>
+      <a href="index.html#contatti" class="obs-cta-btn">
+        Parliamo del tuo progetto
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand"><span class="j">J</span>oppolo</span>
+    <div class="footer-info">
+      Sales Strategy &amp; Consulting &nbsp;·&nbsp; Bologna, Italia &nbsp;·&nbsp;
+      <a class="footer-link" href="privacy-policy.html">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">© 2025 Joppolo. Tutti i diritti riservati.</div>
+  </footer>
+
+  <script>
+    /* Fade-in on scroll */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    /* Hamburger */
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = navMenu.classList.toggle('open');
+      navToggle.classList.toggle('active', open);
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+    document.addEventListener('click', e => {
+      if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* Filtri */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const allCards = document.querySelectorAll('[data-category]');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        allCards.forEach(card => {
+          if (filter === 'tutti' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
