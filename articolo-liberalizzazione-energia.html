@@ -89,6 +89,27 @@
     .footer-link{color:var(--gold);text-decoration:none;}
     .footer-link:hover{color:var(--gold-lt);}
     @media(min-width:768px){footer{padding:3rem 8rem;display:flex;align-items:center;justify-content:space-between;text-align:left;}.footer-brand{display:inline;margin-bottom:0;}.footer-info{text-align:center;margin-bottom:0;}}
+
+    /* CHART EMBED */
+    .chart-embed { background: var(--navy); padding: 2.5rem 0 0; }
+    .chart-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 0; }
+    @media(min-width:768px){ .chart-inner { padding: 0 8rem; } }
+    .chart-eyebrow { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .chart-canvas-wrap { position: relative; width: 100%; height: 240px; }
+    .chart-legend { display: flex; gap: 1.5rem; margin-top: 0.75rem; margin-bottom: 0; }
+    .chart-legend span { font-size: 0.65rem; color: var(--stone); display: flex; align-items: center; gap: 0.4rem; }
+    .leg-box { display: inline-block; width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .leg-dash { display: inline-block; width: 18px; height: 1px; background: rgba(184,151,58,0.5); border-top: 2px dashed rgba(184,151,58,0.5); flex-shrink: 0; }
+    .tl-cards { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; background: rgba(184,151,58,0.15); margin-top: 1.5rem; }
+    @media(max-width:640px){ .tl-cards { grid-template-columns: 1fr 1fr; } }
+    .tl-card { background: var(--navy-mid); padding: 1rem 0.85rem; }
+    .tl-card.tl-hl { background: #0f2236; }
+    .tl-year { font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.3rem; }
+    .tl-pct { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 300; color: var(--cream); line-height: 1; display: block; margin-bottom: 0.15rem; }
+    .tl-pct.tl-gold { color: var(--gold-lt); }
+    .tl-ops { font-size: 0.55rem; color: rgba(156,163,175,0.45); display: block; margin-bottom: 0.35rem; }
+    .tl-lbl { font-size: 0.65rem; font-weight: 300; color: var(--stone); line-height: 1.45; }
+    .chart-source { font-size: 0.55rem; color: rgba(156,163,175,0.4); letter-spacing: 0.06em; padding: 0.75rem 0 2rem; }
     .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
     .fade-up.visible{opacity:1;transform:translateY(0);}
   </style>
@@ -171,11 +192,34 @@
 
     <h2>Vent'anni in cinque tappe</h2>
     <p>
-      La liberalizzazione italiana del settore energy non è stata un evento, ma un processo lungo vent'anni. Nel 2004 erano pionieri e industriali. Nel 2007 arrivarono le famiglie. Nel 2017-2019 il mercato divenne davvero contendibile, con churn in crescita costante e circa 400 operatori attivi.
+      La liberalizzazione italiana del settore energy non è stata un evento, ma un processo lungo vent'anni. Nel 2004 erano pionieri e industriali. Nel 2007 arrivarono le famiglie. Nel 2017-2019 il mercato divenne davvero contendibile. Nel 2024, con la fine del mercato tutelato, il 78% dei clienti domestici luce e l'<strong>86% del gas</strong> sono nel mercato libero: circa 700 operatori si contendono lo stesso bacino.
     </p>
-    <p>
-      Nel 2024, con la fine del mercato tutelato, si sono mossi gli ultimi irriducibili: il 78% dei clienti domestici luce e l'<strong>86% del gas</strong> sono oggi nel mercato libero. Circa 700 operatori si contendono lo stesso bacino.
-    </p>
+
+  </article>
+
+  <!-- GRAFICO INTERATTIVO -->
+  <div class="chart-embed fade-up">
+    <div class="chart-inner">
+      <p class="chart-eyebrow">Clienti domestici nel mercato libero · Fonte ARERA</p>
+      <div class="chart-canvas-wrap">
+        <canvas id="tlChart" role="img" aria-label="Grafico a barre: crescita dei clienti domestici nel mercato libero energia in Italia dal 2004 al 2026.">Clienti nel mercato libero: 2004 ~2%, 2007 ~5%, 2017-19 ~43%, 2024 78%, 2026-27 100%.</canvas>
+      </div>
+      <div class="chart-legend">
+        <span><span class="leg-box" style="background:#2a506e;"></span>Clienti mercato libero</span>
+        <span><span class="leg-dash"></span>Operatori attivi (scala relativa)</span>
+      </div>
+      <div class="tl-cards">
+        <div class="tl-card"><span class="tl-year">2004–05 · Avvio</span><span class="tl-pct">~2%</span><span class="tl-ops">~50 operatori</span><span class="tl-lbl">Praterie per i pionieri. La tutela spesso più conveniente.</span></div>
+        <div class="tl-card"><span class="tl-year">2007 · Famiglie libere</span><span class="tl-pct">~5%</span><span class="tl-ops">~150 operatori</span><span class="tl-lbl">Le famiglie possono scegliere. Il mercato inizia a muoversi.</span></div>
+        <div class="tl-card"><span class="tl-year">2017–19 · Massa critica</span><span class="tl-pct">~43%</span><span class="tl-ops">~400 operatori</span><span class="tl-lbl">Mercato contendibile. Churn in crescita costante.</span></div>
+        <div class="tl-card tl-hl"><span class="tl-year">2024 · Fine tutela</span><span class="tl-pct tl-gold">78%</span><span class="tl-ops">~700 operatori</span><span class="tl-lbl">Si muovono gli irriducibili. Pressione massima.</span></div>
+        <div class="tl-card tl-hl"><span class="tl-year">2026–27 · Switch 24h</span><span class="tl-pct tl-gold">100%</span><span class="tl-ops">? operatori</span><span class="tl-lbl">Churn illimitato. Vince chi ha costruito relazione.</span></div>
+      </div>
+      <p class="chart-source">Fonte: ARERA – Monitoraggio Retail Energia Elettrica e Gas · dati clienti domestici</p>
+    </div>
+  </div>
+
+  <article class="art-body fade-up">
 
     <div class="pull-quote">
       <p>"Quando tutti competono sullo stesso cliente, la differenza non la fa più il prezzo — la fa la qualità della relazione commerciale."</p>
@@ -243,6 +287,80 @@
     navToggle.addEventListener('click', e => { e.stopPropagation(); const open = navMenu.classList.toggle('open'); navToggle.classList.toggle('active', open); navToggle.setAttribute('aria-expanded', open); });
     navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navMenu.classList.remove('open'); navToggle.classList.remove('active'); navToggle.setAttribute('aria-expanded','false'); }));
     document.addEventListener('click', e => { if(!navMenu.contains(e.target) && !navToggle.contains(e.target)) { navMenu.classList.remove('open'); navToggle.classList.remove('active'); navToggle.setAttribute('aria-expanded','false'); } });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script>
+    (function() {
+      var canvas = document.getElementById('tlChart');
+      if (!canvas) return;
+      new Chart(canvas, {
+        type: 'bar',
+        data: {
+          labels: ['2004–05', '2007', '2017–19', '2024', '2026–27'],
+          datasets: [
+            {
+              label: 'Clienti mercato libero (%)',
+              data: [2, 5, 43, 78, 100],
+              backgroundColor: ['#1e3a52','#1e3a52','#1e3a52','#B8973A','#D4B060'],
+              borderColor:     ['#2a506e','#2a506e','#2a506e','#c8a748','#e0bc5a'],
+              borderWidth: 1,
+              borderRadius: 2,
+              yAxisID: 'y'
+            },
+            {
+              label: 'Operatori attivi (scala relativa)',
+              data: [5, 15, 40, 70, 85],
+              type: 'line',
+              borderColor: 'rgba(184,151,58,0.38)',
+              backgroundColor: 'transparent',
+              borderWidth: 1.5,
+              borderDash: [5,3],
+              pointBackgroundColor: 'rgba(184,151,58,0.65)',
+              pointBorderColor: 'rgba(184,151,58,0.65)',
+              pointRadius: 4,
+              tension: 0.35,
+              yAxisID: 'y'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(ctx) {
+                  var real = [2,5,43,78,100];
+                  var ops  = [50,150,400,700,null];
+                  if (ctx.datasetIndex === 0) return ' Clienti libero: ' + real[ctx.dataIndex] + '%';
+                  var o = ops[ctx.dataIndex];
+                  return o ? ' Operatori: ~' + o : ' Operatori: in evoluzione';
+                }
+              },
+              backgroundColor: '#0D1B2A',
+              borderColor: 'rgba(184,151,58,0.3)',
+              borderWidth: 1,
+              titleColor: '#F8F5EF',
+              bodyColor: '#9CA3AF',
+              padding: 10
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#9CA3AF', font: { size: 11 }, autoSkip: false },
+              grid:  { color: 'rgba(255,255,255,0.04)' }
+            },
+            y: {
+              min: 0, max: 110,
+              ticks: { color: '#9CA3AF', font: { size: 11 }, callback: function(v){ return v + '%'; }, stepSize: 20 },
+              grid:  { color: 'rgba(255,255,255,0.06)' }
+            }
+          }
+        }
+      });
+    })();
   </script>
 </body>
 </html>
