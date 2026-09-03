@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Il cliente che se ne va è nato in una vendita sbagliata — Joppolo Osservatorio</title>
+  <meta name="description" content="Perché il churn nel mercato energia non è un problema di customer care ma di come è stata fatta la vendita, e cosa cambia se il commerciale risponde anche del cliente che resta.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{--navy:#0D1B2A;--navy-mid:#142234;--gold:#B8973A;--gold-lt:#D4B060;--cream:#F8F5EF;--stone:#9CA3AF;--ink:#2C2C2C;--bg:#FAFAF8;--light:#F3F1EC;--nav-h:60px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+    nav{position:sticky;top:0;z-index:200;height:var(--nav-h);background:rgba(13,27,42,0.98);border-bottom:1px solid rgba(184,151,58,0.2);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;}
+    .nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;letter-spacing:0.14em;color:var(--cream);text-decoration:none;text-transform:uppercase;z-index:260;}
+    .nav-brand .j{color:var(--gold);}
+    .nav-toggle{width:34px;height:34px;background:transparent;border:none;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;padding:0;z-index:260;}
+    .nav-toggle span{display:block;width:22px;height:2px;background:var(--gold);transition:transform 0.25s,opacity 0.25s;}
+    .nav-toggle.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-toggle.active span:nth-child(2){opacity:0;}
+    .nav-toggle.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .nav-menu{position:absolute;top:calc(var(--nav-h) - 1px);right:1.5rem;min-width:220px;background:rgba(13,27,42,0.98);border:1px solid rgba(184,151,58,0.18);padding:0.5rem 0;display:none;flex-direction:column;z-index:250;}
+    .nav-menu.open{display:flex;}
+    .nav-menu a{color:var(--cream);text-decoration:none;font-size:0.74rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.85rem 1.2rem;white-space:nowrap;transition:background 0.25s,color 0.25s;}
+    .nav-menu a:hover,.nav-menu a.active{color:var(--gold);background:rgba(184,151,58,0.06);}
+    @media(min-width:768px){nav{padding:0 4rem;}.nav-menu{right:4rem;}}
+    .breadcrumb{padding:0.9rem 1.5rem;background:var(--light);border-bottom:1px solid #e3dfd6;display:flex;align-items:center;gap:0.5rem;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone);}
+    .breadcrumb a{color:var(--gold);text-decoration:none;}.breadcrumb a:hover{color:var(--gold-lt);}.breadcrumb span{color:#c8c3b8;}
+    @media(min-width:768px){.breadcrumb{padding:0.9rem 8rem;}}
+    .art-hero{background:var(--navy);padding:3.5rem 1.5rem 3rem;position:relative;overflow:hidden;}
+    .art-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,151,58,0.07) 0%,transparent 55%);pointer-events:none;}
+    .art-hero-inner{position:relative;z-index:2;max-width:760px;}
+    .art-tag{display:inline-block;font-size:0.52rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:0.28rem 0.6rem;border:1px solid rgba(184,151,58,0.5);color:var(--gold);margin-bottom:1.25rem;}
+    .art-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,6vw,3.2rem);font-weight:300;color:var(--cream);line-height:1.12;margin-bottom:1.25rem;}
+    .art-hero h1 em{font-style:italic;color:var(--gold);}
+    .art-meta{display:flex;align-items:center;gap:1.25rem;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(156,163,175,0.6);}
+    .art-meta span+span::before{content:'·';margin-right:1.25rem;}
+    @media(min-width:768px){.art-hero{padding:5rem 8rem 4rem;}}
+
+    .stat-panel{background:var(--gold);padding:2rem 1.5rem;display:grid;grid-template-columns:1fr;gap:1.5rem;}
+    .stat-item{text-align:center;}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,8vw,3.5rem);font-weight:300;color:var(--navy);line-height:1;display:block;margin-bottom:0.3rem;}
+    .stat-label{font-size:0.58rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(13,27,42,0.65);line-height:1.4;}
+    @media(min-width:600px){.stat-panel{grid-template-columns:repeat(3,1fr);padding:2rem 8rem;}.stat-item+.stat-item{border-left:1px solid rgba(13,27,42,0.15);}}
+
+    .art-body{max-width:720px;margin:0 auto;padding:3rem 1.5rem 2rem;}
+    @media(min-width:768px){.art-body{padding:4rem 2rem 3rem;}}
+    .art-lead{font-family:'Cormorant Garamond',serif;font-size:clamp(1.15rem,2.5vw,1.45rem);font-weight:300;font-style:italic;color:var(--navy);line-height:1.6;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid #e3dfd6;}
+    .art-body h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3vw,1.75rem);font-weight:400;color:var(--navy);line-height:1.2;margin:2.5rem 0 1rem;}
+    .art-body p{font-size:0.93rem;font-weight:300;line-height:1.9;color:#3a3a38;margin-bottom:1.25rem;}
+    .art-body strong{font-weight:500;color:var(--navy);}
+    .pull-quote{border-left:3px solid var(--gold);padding:1rem 1.5rem;margin:2.5rem 0;background:var(--light);}
+    .pull-quote p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.3rem);font-style:italic;font-weight:300;color:var(--navy);line-height:1.55;margin:0;}
+    .takeaway-box{background:var(--navy);padding:1.75rem;margin:2.5rem 0;}
+    .takeaway-label{font-size:0.52rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block;}
+    .takeaway-list{list-style:none;display:flex;flex-direction:column;gap:0.65rem;}
+    .takeaway-list li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.85rem;font-weight:300;color:rgba(248,245,239,0.8);line-height:1.55;}
+    .takeaway-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:0.45rem;flex-shrink:0;}
+    .art-divider{width:50px;height:2px;background:var(--gold);margin:2.5rem 0;}
+    .art-footer-nav{max-width:720px;margin:0 auto;padding:0 1.5rem 4rem;display:flex;flex-direction:column;gap:1.5rem;}
+    @media(min-width:600px){.art-footer-nav{flex-direction:row;align-items:center;justify-content:space-between;padding:0 2rem 4rem;}}
+    .back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.62rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color 0.2s,gap 0.2s;}
+    .back-link:hover{color:var(--navy);gap:0.8rem;}.back-link svg{transition:transform 0.2s;}.back-link:hover svg{transform:translateX(-3px);}
+    .cta-link{display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1.1rem;background:var(--navy);border:1px solid var(--navy);color:var(--gold);font-size:0.58rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:background 0.25s,color 0.25s;}
+    .cta-link:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);}
+    footer{background:var(--navy);border-top:3px solid var(--gold);padding:2rem 1.5rem;text-align:center;}
+    .footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream);display:block;margin-bottom:0.6rem;}
+    .footer-brand .j{color:var(--gold);}
+    .footer-info{font-size:0.72rem;color:var(--stone);line-height:1.7;margin-bottom:0.5rem;}
+    .footer-copy{font-size:0.65rem;color:rgba(156,163,175,0.5);}
+    .footer-link{color:var(--gold);text-decoration:none;}.footer-link:hover{color:var(--gold-lt);}
+    @media(min-width:768px){footer{padding:3rem 8rem;display:flex;align-items:center;justify-content:space-between;text-align:left;}.footer-brand{display:inline;margin-bottom:0;}.footer-info{text-align:center;margin-bottom:0;}}
+    .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}.fade-up.visible{opacity:1;transform:translateY(0);}
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-brand" href="index.html"><span class="j">J</span>oppolo</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Apri menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html">Home</a><a href="index.html#chi-sono">Chi sono</a><a href="index.html#servizi">Servizi</a>
+      <a href="osservatorio.html" class="active">Osservatorio</a><a href="index.html#contatti">Contatti</a><a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="osservatorio.html">Osservatorio Vendita</a><span>/</span>
+    <span>Mercato &amp; Numeri</span><span>/</span><span>Il costo nascosto del churn</span>
+  </div>
+
+  <header class="art-hero">
+    <div class="art-hero-inner">
+      <span class="art-tag">Mercato &amp; Numeri</span>
+      <h1>Il cliente che se ne va<br>è nato<br><em>in una vendita sbagliata</em></h1>
+      <div class="art-meta"><span>Settembre 2026</span><span>7 min lettura</span><span>Stefano Joppolo</span></div>
+    </div>
+  </header>
+
+  <div class="stat-panel fade-up">
+    <div class="stat-item">
+      <span class="stat-num">5x</span>
+      <span class="stat-label">il costo di acquisire un cliente nuovo<br>rispetto a trattenerne uno esistente</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">90</span>
+      <span class="stat-label">i giorni in cui si decide, di fatto,<br>se un cliente resterà o migrerà</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1</span>
+      <span class="stat-label">il reparto che quasi mai risponde<br>del cliente perso: la vendita</span>
+    </div>
+  </div>
+
+  <article class="art-body fade-up">
+    <p class="art-lead">
+      In quasi tutte le aziende del comparto energia che ho visto da vicino, il churn è un problema del customer care: si misura lì, si analizza lì, si cerca di ridurlo lì. Ma quando si va a guardare il singolo cliente perso — non la statistica aggregata, il cliente vero — la causa quasi sempre non è nata al call center. È nata nel momento della vendita, mesi prima, ed è rimasta silenziosa fino a quando il cliente non ha semplicemente smesso di crederci.
+    </p>
+
+    <h2>Il churn si misura dopo, ma si decide prima</h2>
+    <p>
+      Il tasso di abbandono è per costruzione un indicatore ritardato: fotografa oggi una decisione che il cliente ha maturato settimane o mesi prima, spesso già nei primi giorni dopo la firma. Se un venditore ha promesso una condizione che il contratto non prevede, se ha proposto un'offerta senza capire davvero il profilo di consumo del cliente, se ha lasciato intendere un risparmio che nella bolletta reale non si materializza — il cliente non se ne accorge subito. Se ne accorge alla prima bolletta anomala, o alla prima chiamata dell'assistenza che non risolve il suo problema. A quel punto il churn è già scritto. Il customer care lo gestisce, ma non lo ha causato.
+    </p>
+    <p>
+      Trattare il churn come un problema di assistenza clienti significa curare il sintomo nel reparto sbagliato. Il risultato è prevedibile: si investe in retention, i numeri migliorano di poco, e ogni mese arriva un nuovo gruppo di clienti "sorpresi" da qualcosa che in realtà gli era stato venduto male.
+    </p>
+
+    <div class="pull-quote">
+      <p>"Il tasso di abbandono non è un problema di customer care. È il rendiconto ritardato di come è stata fatta la vendita, mesi prima."</p>
+    </div>
+
+    <h2>Tre vendite che generano churn per costruzione</h2>
+    <p>
+      Nella mia esperienza sul campo, la maggior parte del churn "evitabile" nasce da tre errori commerciali ricorrenti, tutti diversi dalla semplice disonestà e per questo più difficili da individuare.
+    </p>
+    <p>
+      Il primo è la <strong>promessa che il contratto non copre</strong>: uno sconto descritto come "fisso" quando è promozionale, un servizio accessorio dato per scontato quando è a pagamento, un risparmio stimato su un profilo di consumo diverso da quello reale del cliente. Non è quasi mai malafede: è entusiasmo commerciale che scavalca il dettaglio contrattuale.
+    </p>
+    <p>
+      Il secondo è l'<strong>offerta sbagliata per il profilo giusto</strong>: vendere la tariffa più semplice da spiegare, non quella più adatta al consumo del cliente. Funziona nel breve — la vendita si chiude prima — ma nel medio termine genera una bolletta che il cliente non si aspettava, e quella è la prima crepa.
+    </p>
+    <p>
+      Il terzo è il <strong>silenzio sul dopo-vendita</strong>: nessuno dice al cliente cosa aspettarsi nei primi due mesi, quando può arrivare un conguaglio, a chi rivolgersi per una domanda. Il cliente lasciato senza aspettative chiare interpreta la prima anomalia come un problema, non come normale amministrazione — ed è lì che comincia a guardarsi intorno.
+    </p>
+
+    <div class="art-divider"></div>
+
+    <h2>Perché nessuno lo vede: dati separati, responsabilità separate</h2>
+    <p>
+      Nella maggior parte delle organizzazioni, i dati di vendita e i dati di abbandono vivono in sistemi diversi, letti da persone diverse, con obiettivi diversi. La rete commerciale è misurata su quanto vende questo mese; il customer care è misurato su quanto trattiene questo mese. Nessuno dei due ha davanti l'informazione che conta davvero: quale canale, quale agente, quale tipo di offerta produce il churn più alto a 90 e a 365 giorni. Senza quell'incrocio, il problema resta invisibile per definizione — e si continua a intervenire sul sintomo.
+    </p>
+    <p>
+      Le aziende che sono riuscite a ridurre davvero il churn evitabile sono quelle che hanno rotto questo silos per prime: hanno collegato l'anagrafica del cliente perso al canale e all'agente che lo ha acquisito, e hanno cominciato a guardare la retention come un dato di qualità della vendita, non solo del servizio.
+    </p>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Cosa cambiare, concretamente</span>
+      <ul class="takeaway-list">
+        <li>Misurare il churn a 90 e a 365 giorni per singolo canale e singolo venditore, non solo a livello aggregato di portafoglio</li>
+        <li>Inserire un KPI di retention nella valutazione e nella remunerazione della rete commerciale, non solo del customer care</li>
+        <li>Standardizzare uno script di chiusura vendita che fissi esplicitamente le aspettative sui primi due mesi di fornitura</li>
+        <li>Fare un debriefing mensile tra vendita e assistenza sui clienti persi nei primi 90 giorni, cliente per cliente</li>
+        <li>Vietare la promessa di condizioni non scritte nel contratto, anche quando "di fatto" vengono sempre applicate</li>
+      </ul>
+    </div>
+
+    <h2>Trattenere è una competenza commerciale, non un reparto</h2>
+    <p>
+      Il modo più veloce per abbassare il costo di acquisizione non è vendere di più: è smettere di perdere, in silenzio, i clienti che si sono già acquisiti. E questo non si ottiene rafforzando il customer care, ma cambiando il modo in cui si vende — con offerte coerenti col profilo reale del cliente, promesse che il contratto può mantenere, e un venditore che sa di essere responsabile non solo della firma, ma di ciò che succede dopo.
+    </p>
+  </article>
+
+  <div class="art-footer-nav fade-up">
+    <a href="osservatorio.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Torna all'Osservatorio
+    </a>
+    <a href="index.html#contatti" class="cta-link">
+      Parliamo del tuo progetto
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <footer>
+    <span class="footer-brand"><span class="j">J</span>oppolo</span>
+    <div class="footer-info">Sales Strategy &amp; Consulting &nbsp;·&nbsp; Bologna, Italia &nbsp;·&nbsp;<a class="footer-link" href="privacy-policy.html">Privacy Policy</a></div>
+    <div class="footer-copy">© 2025 Joppolo. Tutti i diritti riservati.</div>
+  </footer>
+
+  <script>
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+    document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+    const navToggle=document.getElementById('nav-toggle'),navMenu=document.getElementById('nav-menu');
+    navToggle.addEventListener('click',e=>{e.stopPropagation();const open=navMenu.classList.toggle('open');navToggle.classList.toggle('active',open);navToggle.setAttribute('aria-expanded',open);});
+    navMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navMenu.classList.remove('open');navToggle.classList.remove('active');navToggle.setAttribute('aria-expanded','false');}));
+    document.addEventListener('click',e=>{if(!navMenu.contains(e.target)&&!navToggle.contains(e.target)){navMenu.classList.remove('open');navToggle.classList.remove('active');navToggle.setAttribute('aria-expanded','false');}});
+  </script>
+</body>
+</html>
